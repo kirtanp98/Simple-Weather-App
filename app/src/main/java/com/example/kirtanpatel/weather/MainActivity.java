@@ -56,25 +56,18 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_COARSE_LOCATION)) {
 
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
+                // Show an explanation to the user *asynchronously
+                //try to ask for permission again
 
             } else {
-
                 // No explanation needed, we can request the permission.
 
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
             }
         }
 
@@ -82,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
         getLocation();
 
         try {
-            output = new GetJsonFromURL().execute("https://api.darksky.net/forecast/6fbcf7b85b9cd3021c8a39883c63389d/" + coordinates[0] +"," + coordinates[1]).get();
-            //output = new GetJsonFromURL().execute("https://api.darksky.net/forecast/6fbcf7b85b9cd3021c8a39883c63389d/40.5291979,-74.41922590000001").get();
+            output = new GetJsonFromURL().execute("https://api.darksky.net/forecast/keyhere/" + coordinates[0] +"," + coordinates[1]).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
             output = "Got interupted";
